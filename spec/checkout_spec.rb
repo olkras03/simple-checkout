@@ -10,6 +10,15 @@ describe Checkout do
   it "responds to scan" do
     checkout = Checkout.new
     item1 = Item.new("milk", 1.25)
-    expect(checkout.scan).to eq(item1)
+    expect(checkout.scan(item1)).to eq([1.25])
+  end
+
+  it "#total" do
+    checkout = Checkout.new
+    item1 = Item.new("milk", 1.25)
+    item2 = Item.new("butter", 2.00)
+    checkout.scan(item1)
+    checkout.scan(item2)
+    expect(checkout.total).to eq 3.25
   end
 end
