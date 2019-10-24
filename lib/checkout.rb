@@ -8,10 +8,11 @@ class Checkout
   end
 
   def scan(item)
-    @items << item.price
+    @items << item
   end
 
   def total
-    @items.sum
+    sum = 0
+    @items.each { |a| sum += a }
   end
 end
