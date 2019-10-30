@@ -1,4 +1,4 @@
-require "item"
+require_relative "item"
 
 class Checkout
   attr_reader :items
@@ -8,11 +8,14 @@ class Checkout
   end
 
   def scan(item)
-    @items << item
+    @items.append(item.price)
   end
 
   def total
-    sum = 0
-    @items.each { |a| sum += a }
+     @items.inject(:+)
+  end
+
+  def display_total
+    "£%.2f" % total
   end
 end
